@@ -201,16 +201,26 @@ ListItem.displayName = "ListItem";
 export default function Navbar() {
   const { setTheme } = useTheme();
   return (
-    <nav className="flex py-4 px-4 sm:px-12 items-center justify-between w-full border-b bg-blur-sm">
-      <div>
-        <a className="flex items-center space-x-2">
-          <Icons.logo className="h-6 w-6" />
-          <span className="text-lg font-medium">shadcn/ui</span>
-        </a>
-      </div>
-      <div className="hidden sm:flex items-center space-x-3">
-        <NavigationMenuDemo />
-        <ModeToggle />
+    <nav className="sticky top-0 border-b backdrop-blur-sm bg-white/80 dark:bg-black/70">
+      <div className="flex py-4 px-4 items-center justify-between w-full ">
+        <div>
+          <a href="/" className="flex items-center space-x-2">
+            <Icons.logo className="h-6 w-6" />
+            <span className="text-lg font-medium">kngdm.io</span>
+          </a>
+        </div>
+        <div className="flex items-center space-x-3">
+          <s className="hidden sm:flex ">
+            <NavigationMenuDemo />
+          </s>
+          <div className="hidden sm:flex">
+            <ModeToggle />
+          </div>
+
+          <Button>
+            <Link href="/login">Login</Link>
+          </Button>
+        </div>
       </div>
     </nav>
   );

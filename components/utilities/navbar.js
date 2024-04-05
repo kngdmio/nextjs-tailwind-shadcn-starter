@@ -25,41 +25,44 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-const components = [
+const infolinks = [
   {
-    title: "First",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+    title: "First Time Homebuyers",
+    href: "/first-time-homebuyers",
+    description: "Our step-by-step guide for first time homebuyers",
   },
   {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
+    title: "Home Marketing Guide",
+    href: "/home-marketing-guide",
+    description: "Learn what makes our marketing strategy unique and effective",
   },
   {
-    title: "Progress",
-    href: "/docs/primitives/progress",
+    title: "Frequently Asked Questions",
+    href: "/faq",
     description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+      "Answers to common questions about buying and selling real estate",
   },
   {
-    title: "Scroll-area",
+    title: "Mortgage Calculator",
     href: "/docs/primitives/scroll-area",
     description: "Visually or semantically separates content.",
   },
+];
+const services = [
   {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+    title: "Buy",
+    href: "/listings",
+    description: "Browse Coastal Bend Listings and find your dream home",
   },
   {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+    title: "Sell",
+    href: "/sell",
+    description: "List your home with Gomez Properties and get top dollar",
+  },
+  {
+    title: "Rent",
+    href: "/rentals",
+    description: "Find Your Next Rental and start an application online",
   },
 ];
 
@@ -96,7 +99,7 @@ export function NavigationMenuDemo() {
       <NavigationMenuList>
         {/* Getting Started */}
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Services</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">
@@ -116,42 +119,51 @@ export function NavigationMenuDemo() {
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/docs" title="Introduction">
-                Re-usable components built using Radix UI and Tailwind CSS.
-              </ListItem>
-              <ListItem href="/docs/installation" title="Installation">
-                How to install dependencies and structure your app.
-              </ListItem>
-              <ListItem href="/docs/primitives/typography" title="Typography">
-                Styles for headings, paragraphs, lists...etc
-              </ListItem>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        {/* Components */}
-
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Components</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
+              {services.map((service) => (
                 <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
+                  key={service.title}
+                  title={service.title}
+                  href={service.href}
                 >
-                  {component.description}
+                  {service.description}
                 </ListItem>
               ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
 
-        {/* Documentation */}
+        {/* Info and Tools */}
         <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
+          <NavigationMenuTrigger>Info / Tools</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]  ">
+              {infolinks.map((infolink) => (
+                <ListItem
+                  key={infolink.title}
+                  title={infolink.title}
+                  href={infolink.href}
+                >
+                  {infolink.description}
+                </ListItem>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+        {/* Blog */}
+        <NavigationMenuItem>
+          <Link href="/blog" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Documentation
+              Blog
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+
+        {/* Contact */}
+        <NavigationMenuItem>
+          <Link href="/contact" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Contact
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
@@ -201,23 +213,25 @@ ListItem.displayName = "ListItem";
 export default function Navbar() {
   const { setTheme } = useTheme();
   return (
-    <nav className="sticky top-0 border-b backdrop-blur-sm bg-white/80 dark:bg-black/70">
-      <div className="flex py-4 px-4 items-center justify-between w-full ">
+    <nav className="sticky top-0 border-b backdrop-blur-sm bg-white/80 dark:bg-black/70 ">
+      <div className="flex py-3 px-4 items-center justify-between w-full ">
         <div>
           <a href="/" className="flex items-center space-x-2">
             <Icons.logo className="h-6 w-6" />
-            <span className="text-lg font-medium">kngdm.io</span>
+            <span className="text-lg font-medium">kngdm/re</span>
           </a>
         </div>
-        <div className="flex items-center space-x-3">
-          <s className="hidden sm:flex ">
+
+        <div className="flex items-center space-x-3 ">
+          <span className="hidden sm:flex ">
             <NavigationMenuDemo />
-          </s>
+          </span>
+        </div>
+        <div className="flex items-center space-x-3">
           <div className="hidden sm:flex">
             <ModeToggle />
           </div>
-
-          <Button>
+          <Button variant="outline">
             <Link href="/login">Login</Link>
           </Button>
         </div>
